@@ -9,12 +9,11 @@ int main(int argc, char **argv)
 	{
 		for (int i=1; i < argc; i++)
 		{
-			for (int k=0; argv[i][k]; k++)
+			std::string str = argv[i];
+			for (size_t k=0; k < str.length(); k++)
 			{
-				if (argv[i][k] >= 97 && argv[i][k] <= 122)
-					std::cout << (char)(argv[i][k] - 32);
-				else
-					std::cout << (argv[i][k]);
+				str[k] = toupper(str[k]);
+				std::cout << str[k];
 			}
 		}
 		std::cout << "\n";
