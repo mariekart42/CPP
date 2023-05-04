@@ -1,6 +1,15 @@
 #include "phoneBook.hpp"
 #include "contact.hpp"
 
+void doAdd()
+{
+	phoneBook *pBook = NULL;
+	int32_t i = 0;
+	while (pBook->array+i)
+		i++;
+	std::cout << "i: " << i << std::endl;
+	pBook->(array+i).
+}
 
 int main(void)
 {
@@ -11,17 +20,21 @@ int main(void)
 		std::cout << "use ADD, SEARCH or EXIT: ";
 		std::getline(std::cin, input);
 		// std::cout << "\033[35m\033[47m" << "noice u enterd:" << "\033[0m" << " " << input << std::endl;
-		if (input == "ADD")
-			std::cout << "thats ADD" << std::endl;
-		else if (input == "SEARCH")
+		if (input == "ADD" || input == "add")
+		{
+
+			doAdd();
+			// std::cout << "thats ADD" << std::endl;
+		}
+		else if (input == "SEARCH" || input == "search")
 			std::cout << "thats SEARCH" << std::endl;
-		else if (input == "EXIT")
+		else if (input == "EXIT" || input == "exit")
 		{
 			std::cout << "thats EXIT" << std::endl;
 			break;
 		}
 		else
-			std::cout << "\033[35m" << "\"" << input << "\"" << "\033[0m" << " not gut, try again: ";
+			std::cout << "\033[35m" << "\"" << input << "\"" << "\033[0m" << " Inavlid Input, try again: ";
 
 	}
 

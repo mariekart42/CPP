@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "contact.hpp"
 
 class phoneBook
 {
 	public:
-	std::string name;
+	contact array[8];
 	
 };
