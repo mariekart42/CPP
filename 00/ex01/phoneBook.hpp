@@ -6,6 +6,19 @@
 class phoneBook
 {
 	public:
-	contact array[8];
-	
+	contact *contactArray[8];
+
+
+
+	// construct
+	phoneBook(){
+		for (int i = 0; i < 8; i++)
+			this->contactArray[i] = new contact();
+	}
+
+	// deconstruct
+	~phoneBook(){
+		for (int i = 0; i < 8; i++)
+			delete this->contactArray[i];
+	}	
 };

@@ -1,20 +1,21 @@
 #include "phoneBook.hpp"
 #include "contact.hpp"
 
-void doAdd()
+void doAdd(phoneBook &myPhoneBook , int32_t i)
 {
-	phoneBook *pBook = NULL;
-	int32_t i = 0;
-	while (pBook->array+i)
-		i++;
-	std::cout << "i: " << i << std::endl;
-	pBook->(array+i).
+	myPhoneBook[i%8].
+	
+	
 }
+
+
 
 int main(void)
 {
+	phoneBook myPhoneBook;
 	std::string input;
-
+	int32_t i = 0;
+// exit(0);
 	while (1)
 	{
 		std::cout << "use ADD, SEARCH or EXIT: ";
@@ -22,19 +23,18 @@ int main(void)
 		// std::cout << "\033[35m\033[47m" << "noice u enterd:" << "\033[0m" << " " << input << std::endl;
 		if (input == "ADD" || input == "add")
 		{
-
-			doAdd();
-			// std::cout << "thats ADD" << std::endl;
+			doAdd(myPhoneBook, i);
+			std::cout << "\033[33m" << "ADD" << "\033[0m" << std::endl;
 		}
 		else if (input == "SEARCH" || input == "search")
-			std::cout << "thats SEARCH" << std::endl;
+			std::cout << "\033[34m" << "SEARCH" << "\033[0m" << std::endl;
 		else if (input == "EXIT" || input == "exit")
 		{
-			std::cout << "thats EXIT" << std::endl;
+			std::cout << "\033[31m" << "EXIT" << "\033[0m" << std::endl;
 			break;
 		}
 		else
-			std::cout << "\033[35m" << "\"" << input << "\"" << "\033[0m" << " Inavlid Input, try again: ";
+			std::cout << "Invalid Input: " << "\"" << "\033[35m" << input << "\033[0m" << "\""  << "!\n";
 
 	}
 

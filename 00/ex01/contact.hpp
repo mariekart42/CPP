@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "phoneBook.hpp"
 
 class contact
 {
@@ -10,4 +11,16 @@ class contact
 	std::string nickName;
 	std::string secret;
 	std::string	phoneNumber;
+
+	// init constructor
+	contact()
+	{
+		// contact myContact;
+		firstName = "";
+		lastName = "";
+		nickName = "";
+		secret = "";
+		phoneNumber = "";
+	}
+
 };
