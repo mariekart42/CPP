@@ -1,30 +1,38 @@
 #include "phoneBook.hpp"
 #include "contact.hpp"
 
-void doAdd(phoneBook &myPhoneBook , int32_t i)
+std::string getContent(std::string msg)
 {
-	myPhoneBook[i%8].
-	
-	
+	std::string input = "";
+	std::cout << "\033[33m" << "enter " << msg << ": " << "\033[0m"<< std::endl;
+	while(input == "")
+		std::getline(std::cin, input);
+	return (input);
 }
 
-
+void phoneBook::doAdd(void)
+{
+	std::cout << "\033[33m" << "ADD" << "\033[0m" << std::endl;
+	contactArray[i%8]->firstName = getContent("fist name");
+	contactArray[i%8]->lastName = getContent("last name");
+	contactArray[i%8]->nickName = getContent("nickname");
+	contactArray[i%8]->secret = getContent("secret");
+	contactArray[i%8]->phoneNumber = getContent("phonenumber");
+	i++;
+}
 
 int main(void)
 {
 	phoneBook myPhoneBook;
 	std::string input;
-	int32_t i = 0;
-// exit(0);
+
 	while (1)
 	{
 		std::cout << "use ADD, SEARCH or EXIT: ";
 		std::getline(std::cin, input);
-		// std::cout << "\033[35m\033[47m" << "noice u enterd:" << "\033[0m" << " " << input << std::endl;
 		if (input == "ADD" || input == "add")
 		{
-			doAdd(myPhoneBook, i);
-			std::cout << "\033[33m" << "ADD" << "\033[0m" << std::endl;
+			myPhoneBook.doAdd();
 		}
 		else if (input == "SEARCH" || input == "search")
 			std::cout << "\033[34m" << "SEARCH" << "\033[0m" << std::endl;
@@ -34,9 +42,12 @@ int main(void)
 			break;
 		}
 		else
-			std::cout << "Invalid Input: " << "\"" << "\033[35m" << input << "\033[0m" << "\""  << "!\n";
+			std::cout << "Invalid Input: " << "\"" << "\033[35m" << input << "\033[0m" << "\"" << "!\n";
 
 	}
+	std::cout << myPhoneBook.contactArray[0]->firstName << std::endl;
+	std::cout << myPhoneBook.contactArray[1]->firstName << std::endl;
+	std::cout << myPhoneBook.contactArray[2]->firstName << std::endl;
 
 //  std::cout << "\033[32m\033[42m" << "SOMETHING" << "\033[0m" << std::endl;
 // 	phoneBook myPhoneBook;

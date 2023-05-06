@@ -6,19 +6,25 @@
 class phoneBook
 {
 	public:
-	contact *contactArray[8];
+		contact *contactArray[8];
+		int8_t i;
 
 
 
-	// construct
-	phoneBook(){
-		for (int i = 0; i < 8; i++)
-			this->contactArray[i] = new contact();
-	}
+		// construct
+		phoneBook(){
+			for (int k = 0; k < 8; k++)
+				this->contactArray[k] = new contact();
+			this->i = 0;
+		}
 
-	// deconstruct
-	~phoneBook(){
-		for (int i = 0; i < 8; i++)
-			delete this->contactArray[i];
-	}	
+		// deconstruct
+		~phoneBook(){
+			for (int k = 0; k < 8; k++)
+			{
+				// if (this->contactArray[i]->firstName)
+					delete this->contactArray[k];
+			}
+		}
+		void doAdd(void);
 };
