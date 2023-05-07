@@ -1,5 +1,18 @@
 #include "phoneBook.hpp"
 
+phoneBook::phoneBook()
+{
+	for (int k = 0; k < 8; k++)
+		this->contactArray[k] = new contact();
+	this->i = 0;
+}
+
+phoneBook::~phoneBook()
+{
+	for (int k = 0; k < 8; k++)
+		delete this->contactArray[k];
+}
+
 std::string getContent(std::string msg)
 {
 	std::string input = "";

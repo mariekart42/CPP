@@ -7,7 +7,7 @@ int main(void)
 	clear();
 	while (1)
 	{
-		std::cout << std::endl << "use \033[33mADD\033[0m, \033[34mSEARCH\033[0m or \033[31mEXIT\033[0m: ";
+		std::cout << std::endl << "use \033[33mADD\033[0m, \033[34mSEARCH 🔎\033[0m or \033[31mEXIT\033[0m: ";
 		std::getline(std::cin, input);
 		if      (input == "ADD" || input == "add") myPhoneBook.doAdd();
 		else if (input == "SEARCH" || input == "search") myPhoneBook.doSearch();

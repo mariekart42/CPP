@@ -1,19 +1,5 @@
 #include "zombie.hpp"
 
-Zombie* newZombie(std::string name)
-{
-	Zombie *ptr;
-	ptr = new Zombie(name);
-	return (ptr);
-}
-
-void randomChump(std::string name)
-{
-	Zombie *ptr;
-	ptr = new Zombie(name);
-	delete ptr;
-}
-
 void Zombie::announce(void)
 {
 	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;

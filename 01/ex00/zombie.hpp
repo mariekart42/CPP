@@ -6,16 +6,8 @@ class Zombie
 	private:
 		std::string name;
 	public:
-		Zombie()
-		{
-			name = "pissnelke";
-			announce();
-		}
-		Zombie(std::string name_)
-		{
-			name = name_;
-			announce();
-		}
-		~Zombie() {}	
+		Zombie();
+		Zombie(std::string name_);
+		~Zombie();
 		void announce(void);
 };

@@ -1,5 +1,5 @@
 NAME	= phoneBook
-SRC		= phoneBook.cpp main.cpp utils.cpp
+SRC		= main.cpp phoneBook.cpp utils.cpp contact.cpp
 CC		= c++
 RM		= rm
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
