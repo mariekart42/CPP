@@ -2,14 +2,13 @@
 #include <iostream>
 #include <string>
 #include "contact.hpp"
-
+#include <cctype> // for isspace()
+#include <cstdlib> // for system()
 class phoneBook
 {
 	public:
 		contact *contactArray[8];
-		int8_t i;
-
-
+		int i;
 
 		// construct
 		phoneBook(){
@@ -27,4 +26,10 @@ class phoneBook
 			}
 		}
 		void doAdd(void);
+		void doSearch(void);
+		void printFullTable(void);
+		void printContact(void);
 };
+void printSizedMessage(std::string message);
+void clear(void);
+bool onlySpaces(std::string input);
