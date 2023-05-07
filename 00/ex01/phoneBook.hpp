@@ -20,10 +20,8 @@ class phoneBook
 		// deconstruct
 		~phoneBook(){
 			for (int k = 0; k < 8; k++)
-			{
-				// if (this->contactArray[i]->firstName)
-					delete this->contactArray[k];
-			}
+				delete this->contactArray[k];
+
 		}
 		void doAdd(void);
 		void doSearch(void);

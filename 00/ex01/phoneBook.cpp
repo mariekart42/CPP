@@ -1,6 +1,4 @@
 #include "phoneBook.hpp"
-#include "contact.hpp"
-
 
 std::string getContent(std::string msg)
 {
@@ -68,10 +66,16 @@ void phoneBook::printContact(void)
 			break;
 		std::cout << "Invalid Index: \"\033[36m" << input << "\033[0m\"!   --> must be a number from 0 to 7!" <<std::endl<<std::endl;
 	}
-	std::cout << "FIRST NAME: " << contactArray[i%8]->firstName << std::endl;
-	std::cout << "LAST NAME:  " << contactArray[i%8]->lastName << std::endl;
-	std::cout << "NICK NAME:  " << contactArray[i%8]->nickName << std::endl;
-		std::cout << "gut"<<std::endl;
+	clear();
+	std::cout << std::endl << "\033[30m\033[45m CONTACT \033[0m" << std::endl<<std::endl;
+	std::cout << "fist name  :  \033[35m" << contactArray[input[0]-48]->firstName << "\033[0m" << std::endl;
+	std::cout << "last name  :  \033[35m" << contactArray[input[0]-48]->lastName << "\033[0m"<< std::endl;
+	std::cout << "nickname   :  \033[35m" << contactArray[input[0]-48]->nickName << "\033[0m"<< std::endl;
+	std::cout << "dark secret:  \033[35m" << contactArray[input[0]-48]->secret << "\033[0m"<< std::endl;
+	std::cout << "phonenumber:  \033[35m" << contactArray[input[0]-48]->phoneNumber << "\033[0m"<< std::endl<<std::endl;
+	std::cout << " - press ENTER to go back -" << std::endl;
+	std::getline(std::cin, input);
+	clear();
 }
 
 void phoneBook::doSearch(void)
@@ -84,32 +88,4 @@ void phoneBook::doSearch(void)
 	printFullTable();
 	std::cout << "----------------------------------------------" << std::endl << std::endl;
 	printContact();
-}
-
-void clear(void){system("clear");}
-
-bool onlySpaces(std::string input)
-{
-	for (size_t x = 0; x<input.size(); x++)
-		if (!std::isspace(input[x]))
-			return (false);
-	return (true);
-}
-
-int main(void)
-{
-	phoneBook myPhoneBook;
-	std::string input;
-	clear();
-	while (1)
-	{
-		std::cout << std::endl << "use \033[33mADD\033[0m, \033[34mSEARCH\033[0m or \033[31mEXIT\033[0m: ";
-		std::getline(std::cin, input);
-		if      (input == "ADD" || input == "add") myPhoneBook.doAdd();
-		else if (input == "SEARCH" || input == "search") myPhoneBook.doSearch();
-		else if (input == "EXIT" || input == "exit") break;
-		else if (onlySpaces(input) == true) clear();
-		else     std::cout << "Invalid Input: \"\033[35m" << input << "\033[0m\"!\n";
-	}
-	std::cout << "\033[31mEXIT\033[0m" << std::endl;
 }

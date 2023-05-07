@@ -1,7 +1,4 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include "phoneBook.hpp"
 
 class contact
 {
@@ -15,12 +12,10 @@ class contact
 	// init constructor
 	contact()
 	{
-		// contact myContact;
-		firstName = "";
-		lastName = "";
-		nickName = "";
-		secret = "";
-		phoneNumber = "";
+		firstName = "    -";
+		lastName = "    -";
+		nickName = "    -";
+		secret = "    -";
+		phoneNumber = "    -";
 	}
-
 };
