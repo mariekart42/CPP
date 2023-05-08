@@ -2,7 +2,7 @@
 
 void Zombie::announce(void)
 {
-	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << "\033[33m" << name << "\033[0m" << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
 int main(void)
