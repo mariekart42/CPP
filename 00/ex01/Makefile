@@ -2,7 +2,7 @@ NAME	= phoneBook
 SRC		= main.cpp phoneBook.cpp utils.cpp contact.cpp
 CC		= c++
 RM		= rm
-CFLAGS	= -Wall -Werror -Wextra -std=c++98
+CFLAGS	= -I. -Wall -Werror -Wextra -std=c++98
 
 all:	$(NAME)
 

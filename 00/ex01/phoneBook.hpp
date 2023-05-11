@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "contact.hpp"
 #include <cctype> // for isspace()
 #include <cstdlib> // for system()
 
