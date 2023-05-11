@@ -21,11 +21,13 @@ Replace::Replace(int ac, char **av)
     {
         // file.open(av[1], std::ios::in);
         this->infile.open(av[1], std::ios::in);
-        std::string buf;
-        getline(this->infile, buf);
-        std::cout << buf<<std::endl;
-        getline(this->infile, buf);
-        std::cout << buf<<std::endl;
+        if (!this->infile.is_open())
+            throwError("Unable to access file!");
+        // std::string buf;
+        // getline(this->infile, buf);
+        // std::cout << buf<<std::endl;
+        // getline(this->infile, buf);
+        // std::cout << buf<<std::endl;
     }
     // init class variables
     // std::string typecast;
