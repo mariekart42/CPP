@@ -10,11 +10,12 @@ class Replace
         std::ofstream outfile;
         // std::string &fileName;
     public:
+        std::string replace;
+        std::string with;
         bool initSuccess;
-        Replace(int ac, char **av);
+        Replace(int ac, char **&av);
         ~Replace();
         void throwError(std::string message);
-        void read();
+        void read(void);
 };
-
 

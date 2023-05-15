@@ -11,7 +11,7 @@ void Replace::throwError(std::string message)
     initSuccess = false;
 }
 
-Replace::Replace(int ac, char **av)
+Replace::Replace(int ac, char **&av)
 {
     this->initSuccess = true;
     if (ac != 4)
@@ -31,6 +31,8 @@ Replace::Replace(int ac, char **av)
                 throwError("Unable to create output file!");
         }
     }
+    this->replace = av[2];
+    this->with = av[3];
 }
 
 Replace::~Replace()
@@ -41,20 +43,25 @@ Replace::~Replace()
         this->outfile.close();
 }
 
-void Replace::read()
+void Replace::read(void)
 {
     std::string read;
+    size_t found;
+
     while (std::getline(this->infile, read))
     {
-        std::cout << read << std::endl;
-        if (this->infile.eof())
+        // std::cout << read << std::endl;
+        while ((found = read.find(this->replace)) != std::string::npos)
         {
-            std::cout << "reached end of file" << std::endl;
-            break;
+            read.erase(found, this->replace.size());
+            read.insert(found, this->with);
         }
+        this->outfile << read << std::endl;
+        if (this->infile.eof())
+            break;
     }
-
 }
+
 
 int main(int ac, char **av)
 {
@@ -62,8 +69,6 @@ int main(int ac, char **av)
 
     if (obj.initSuccess == false)
         return (69);
-    std::cout<<"gut"<<std::endl;
+    // std::cout<<"gut"<<std::endl;
     obj.read();
-
-
 }
