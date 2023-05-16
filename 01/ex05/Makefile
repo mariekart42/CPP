@@ -2,7 +2,7 @@ NAME = Harl
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 CXX = c++
-CXXFLAGS = -I. -Wall -Wextra -Werrror -std=c++98
+CXXFLAGS = -I. -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 all: $(NAME)

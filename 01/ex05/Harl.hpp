@@ -10,8 +10,10 @@ class Harl
 		void error(void);
 	
 	public:
+		bool initSuccess;
 		void	complain(std::string level);
-		Harl();
+		void throwError(std::string msg);
+		Harl(int ac, char **&av);
 		~Harl();
 };
 //test ssh
