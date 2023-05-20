@@ -11,10 +11,10 @@ class Fixed
 		static const int fracBits = 8;
 	public:
 		Fixed();
+		~Fixed();
 		Fixed(const Fixed& copyFixed); // copy constructor
 		Fixed(const int &n);
 		Fixed(const float &n);
-		~Fixed();
 		int getRawBits() const;
 		void	setRawBits( int const raw );
 		float toFloat(void) const;
