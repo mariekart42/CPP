@@ -18,12 +18,8 @@ class Fixed
 		int getRawBits() const;
 		void	setRawBits( int const raw );
 		float toFloat(void) const;
-
-
-		int getFixedPoint() const;
-		Fixed &operator=(const Fixed&);
 		int toInt( void ) const;
-		// int getFracBits() const;
+		Fixed &operator=(const Fixed&);
 };
 std::ostream& operator<<(std::ostream& out,  Fixed const &obj);
 
