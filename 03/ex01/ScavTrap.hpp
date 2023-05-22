@@ -8,6 +8,11 @@ class ScavTrap : public ClapTrap
 {
 	private:
 	public:
+		ScavTrap();
+		~ScavTrap();
+		ScavTrap(const ScavTrap& copy);
+
+		void guardGate();
 };
 
 #endif

@@ -1,5 +1,44 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(void):
+	_name("NONAME"),
+	_hitPoints(100),
+	_energyPoints(50),
+	_attackDamage(20)
+{
+	std::cout << "\033[32m" << "NONAME ClapTrap created!" << "\033[0m" << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string name):
+	_name(name),
+	_hitPoints(100),
+	_energyPoints(50),
+	_attackDamage(20)
+{
+	std::cout << "\033[32m" << _name << " ClapTrap created!" << "\033[0m" << std::endl;
+}
+
+// copy cinstructor
+ClapTrap::ClapTrap(const ClapTrap &copy)
+{
+	*this = copy;
+}
+ClapTrap::~ClapTrap()
+{
+	std::cout << "\033[31m" << _name << " ClapTrap destroyed!" << "\033[0m" << std::endl;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &obj)
+{
+	_name = obj._name + "_copy";
+	_hitPoints = obj._hitPoints;
+	_energyPoints = obj._energyPoints;
+	_attackDamage = obj._attackDamage;
+	return (*this);
+}
+
+
+
 // --------- FIGHT ---------
 int ClapTrap::getHitPoints(void)
 {
@@ -59,5 +98,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 		_energyPoints--;
 	}
 }
+
 
 
