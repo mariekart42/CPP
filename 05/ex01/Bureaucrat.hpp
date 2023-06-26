@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -15,6 +16,8 @@ class Bureaucrat
 		Bureaucrat(const Bureaucrat&);
 		~Bureaucrat(void);
 		Bureaucrat&  operator=(const Bureaucrat&);
+
+		void signForm(const Form&);
 
 		void setGrade(int);
 		void incrementGrade(void);
