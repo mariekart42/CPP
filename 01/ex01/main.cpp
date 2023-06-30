@@ -10,7 +10,7 @@ int main(void)
 	Zombie *zombieArray;
 	int n = 4;
 
-	zombieArray = zombieHorde(n, "Gurke");
+	zombieArray = zombieHorde(n, "Pickle");
 
 	for (int x = 0; x<n; x++)
 		zombieArray[x].announce();

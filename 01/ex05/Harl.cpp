@@ -6,20 +6,20 @@ Harl::~Harl(){}
 
 void Harl::debug(void)
 {
-	std::cout << "degugggging" << std::endl;
+	std::cout << "DEBUGggging" << std::endl;
 }
 void Harl::info(void)
 {
-	std::cout << "gimme moa info" << std::endl;
+	std::cout << "gimme moa INFO" << std::endl;
 }
 void Harl::warning(void)
 {
-	std::cout << "last warning" << std::endl;
+	std::cout << "last WARNING" << std::endl;
 
 }
 void Harl::error(void)
 {
-	std::cout << "error bitch" << std::endl;
+	std::cout << "ERROR bitch" << std::endl;
 }
 
 void Harl::complain(std::string level)

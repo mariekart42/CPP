@@ -3,7 +3,7 @@ SRC = main.cpp HarlFilter.cpp
 OBJ = $(SRC:.cpp=.o)
 CXX = c++
 CXXFLAGS = -I. -Wall -Werror -Wextra -std=c++98
-RM = rm -rf
+RM = rm -f
 
 all: $(NAME)
 

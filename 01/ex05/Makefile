@@ -3,7 +3,7 @@ SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 CXX = c++
 CXXFLAGS = -I. -Wall -Wextra -Werror -std=c++98
-RM = rm -rf
+RM = rm -f
 
 all: $(NAME)
 
@@ -11,9 +11,9 @@ $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 
 clean:
-	$(RM) $(SRC)
+	$(RM) $(OBJ)
 
-fclean:
+fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
