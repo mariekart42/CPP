@@ -11,7 +11,7 @@ int main(void)
 	ptr = new Zombie();
 	delete ptr;
 
-	randomChump("1845");
+	randomChump("asebvgfda");
 	randomChump("2");
 	randomChump("3");
 }

@@ -3,7 +3,7 @@
 WrongAnimal::WrongAnimal()
 {
 	_type = "WrongAnimal";
-	std::cout << "Wrong Animal Comstructor" << std::endl;
+	std::cout << "\033[32mWrong Animal Comstructor\033[0m" << std::endl;
 }
 
 // copy constructor
@@ -20,12 +20,12 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &src)
 
 WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Wrong Animal Deconstructor" << std::endl;
+	std::cout << "\033[31mWrong Animal Deconstructor\033[0m" << std::endl;
 }
 
 void WrongAnimal::makeSound(void) const
 {
-	std::cout << "[wrong] no animal, no sound" << std::endl;
+	std::cout << " * * * loud silence * * * " << std::endl;
 }
 
 std::string WrongAnimal::getType(void)

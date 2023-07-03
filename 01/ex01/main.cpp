@@ -8,7 +8,7 @@ void Zombie::announce(void)
 int main(void)
 {
 	Zombie *zombieArray;
-	int n = 4;
+	int n = 7;
 
 	zombieArray = zombieHorde(n, "Pickle");
 

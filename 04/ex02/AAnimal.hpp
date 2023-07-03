@@ -11,9 +11,11 @@ class AAnimal
 
 	public:
 		AAnimal(void);
-		virtual ~AAnimal(void);
+		virtual ~AAnimal(void) = 0;
 		AAnimal(const AAnimal&);
 		AAnimal &operator=(const AAnimal&);
+
+// =0 -> makes a function pure virtual=not accessable outside of class anymore
 		virtual void makeSound() const = 0;
 
 		std::string getType(void) const;
