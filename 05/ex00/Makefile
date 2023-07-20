@@ -1,14 +1,14 @@
 NAME = bureaucrat
 SRC = main.cpp Bureaucrat.cpp
 OBJ = $(SRC:.cpp=.o)
-RM = rm -rf
 CXX = c++
-CXXFLAGS = -I. -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -I. -Wall -Werror -Wextra -std=c++98
+RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
+$(NAME): $(SRC)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(SRC)
 
 clean:
 	$(RM) $(OBJ)
