@@ -3,7 +3,7 @@
 WrongCat::WrongCat()
 {
 	_type = "Wrong Cat";
-	std::cout << "Wrong Cat Constructor" << std::endl;
+	std::cout << "\033[32mWrong Cat Constructor\033[0m" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat &copy)
@@ -19,7 +19,7 @@ WrongCat &WrongCat::operator=(const WrongCat &src)
 
 WrongCat::~WrongCat()
 {
-	std::cout << "Wrong Cat Deconstructor" << std::endl;
+	std::cout << "\033[31mWrong Cat Deconstructor\033[0m" << std::endl;
 }
 
 void WrongCat::makeSound(void) const

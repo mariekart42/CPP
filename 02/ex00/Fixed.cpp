@@ -25,7 +25,6 @@ Fixed& Fixed::operator=(const Fixed &other)
 }
 
 
-// A destructor
 Fixed::~Fixed(void)
 {
 	std::cout << "Destructor called" << std::endl;

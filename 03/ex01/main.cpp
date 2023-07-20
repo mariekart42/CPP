@@ -6,9 +6,10 @@ int main(void)
 	ScavTrap	trap1("Scavster");
 
 	trap1.attack("Evil Scavver");
+	trap1.status();
 	trap1.takeDamage(5);
 	trap1.beRepaired(5);
-	trap1.takeDamage(1000);
+	trap1.takeDamage(100);
 	trap1.takeDamage(10);
 	trap1.status();
 	trap1.attack("Evil Scavver");

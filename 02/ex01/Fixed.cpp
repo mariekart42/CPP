@@ -2,7 +2,6 @@
 
 // ---------- DE-/CONSTRUCTORS ----------
 Fixed::Fixed(void)
-	:Fixed(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }

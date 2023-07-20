@@ -3,12 +3,12 @@
 Dog::Dog()
 {
 	_type = "Dog";
-	std::cout << "Dog Constructor" << std::endl;
+	std::cout << "\033[32mDog Constructor\033[0m" << std::endl;
 }
 
 Dog::~Dog()
 {
-	std::cout << "Dog Deconstructor" << std::endl;
+	std::cout << "\033[31mDog Deconstructor\033[0m" << std::endl;
 }
 
 // copy constructor
@@ -16,7 +16,7 @@ Dog::Dog(const Dog& copy):
 	Animal()
 {
 	*this = copy;
-	std::cout << "Dog copy Constructor" << std::endl;
+	std::cout << "\033[32mDog copy Constructor\033[0m" << std::endl;
 }
 
 // overload operator =
