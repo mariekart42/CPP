@@ -32,13 +32,13 @@ int main()
 	}
 	
 	Form datform("Dat Form", 98, 23);
-	// Form datform2(datform);
-	// Bureaucrat bubs("Bubs", 98);
-	// Bureaucrat shmubs("Shmubs", 99);
+	Form datform2(datform);
+	Bureaucrat bubs("Bubs", 98);
+	Bureaucrat shmubs("Shmubs", 99);
 	std::cout << std::endl << datform << std::endl;
-	// std::cout << datform2 << std::endl;
-	// bubs.signForm(datform);
-	// shmubs.signForm(datform2);
-	// datform2 = datform;
-	// std::cout << datform2 << std::endl;
+	std::cout << datform2 << std::endl;
+	bubs.signForm(datform);
+	shmubs.signForm(datform2);
+	datform2 = datform;
+	std::cout << datform2 << std::endl;
 }
