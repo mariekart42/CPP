@@ -1,6 +1,15 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
+// int main()
+// {
+// 	Bureaucrat obj1;
+// 	Bureaucrat obj2("kringe", 6999);
+
+// 	std::cout << "obj1 <name>:  " << obj1.getName() << "\t<grade>:  " << obj1.getGrade() << std::endl; 
+// 	std::cout << "obj2 <name>:  " << obj2.getName() << "\t<grade>:  " << obj2.getGrade() << std::endl; 
+// }
+
 int main()
 {
 	std::cout << "Attempting to create a form with a too low grade (151):" << std::endl;

@@ -4,37 +4,42 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form
 {
 	private:
 		const std::string _name;
-		bool _isSigned;
-		const int _signGrade;
-		const int _execGrade;
+		bool _isSigned;				// indicator if form is signed or not (at construction it’s not)
+		const int _signGrade;		// grade required to sign it.
+		const int _executeGrade;		// grade required to execute it.
 	public:
-		Form();
-		~Form();
+		Form(void);
 		Form(std::string, int, int);
+		Form(const Form&);
+		~Form();
 
-		std::string getName(void) const;
-		bool getIsSigned(void);
+		void checkGradeBounds(void);
+		
+		Form&  operator=(const Form&);
+
+		const std::string getName(void) const;
+		bool getIsSigned(void) const;
 		int getSignGrade(void) const;
-		int getExecGrade(void) const;
-
-		void signForm(const Bureaucrat&);
+		int getExecuteGrade(void) const;
 
 		void beSigned(const Bureaucrat&);
 
-		Form& operator=(const Form&);
-
+		// same as for Bureaucrats:
 		class GradeTooHighException : public std::exception {
 			public:
-				 const char* what() const throw();
+				virtual const char* what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public:
-				 const char* what() const throw();
+				virtual const char* what() const throw();
 		};
 };
-std::ostream & operator<<(std::ostream &, const Form &);
+std::ostream& operator<<(std::ostream&, const Form&);
+
 #endif
