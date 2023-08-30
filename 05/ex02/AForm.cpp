@@ -80,7 +80,7 @@ AForm& AForm::operator=(const AForm& src)
 
 void AForm::beSigned(const Bureaucrat& burr)
 {
-	std::cout << "current grade: " << getSignGrade()<< ", sign grade: " << _signGrade << std::endl;
+//	std::cout << "current grade: " << getSignGrade()<< ", sign grade: " << _signGrade << std::endl;
 	if (burr.getGrade() > _signGrade)
 		throw AForm::GradeTooLowException();
 	_isSigned = true;

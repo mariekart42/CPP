@@ -1,16 +1,16 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat():
-	_name("unnamed"),
-	_grade(0)
+	_name("unnamed Blob"),
+	_grade(150)
 {
-	std::cout << "\033[32m - - default Constructor - -\033[0m" << std::endl;
+//	std::cout << "\033[32m - - default Constructor - -\033[0m" << std::endl;
 	return;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "\033[33m - - default Deconstructor - -\033[0m" << std::endl;
+//	std::cout << "\033[33m - - default Deconstructor - -\033[0m" << std::endl;
 	return;
 }
 
@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade):
 	_name(name)
 {
 	setGrade(grade);
-	std::cout << "\033[32m - - mod Constructor - -\033[0m" << std::endl;
+//	std::cout << "\033[32m - - mod Constructor - -\033[0m" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& src):

@@ -47,10 +47,10 @@ bool RobotomyRequestForm::random()
 
 void RobotomyRequestForm::execute(const Bureaucrat& burr)
 {
+	std::cout << getName() << " was executed by " << burr.getName() << std::endl;
 	// bool result = random();
 	std::string msg1 = getTarget() + " has been robotomized successfully!";
 	std::string msg2 = "Sorry, the robotomy failed!";
 	std::cout << getTarget();
     std::cout << (random() ? msg1 : msg2) << std::endl;
-	std::cout << getName() << " was executed by " << burr.getName() << std::endl;
 }
