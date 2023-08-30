@@ -1,5 +1,14 @@
 #include "RobotomyRequestForm.hpp"
 
+// Colour shit
+# define RED   "\x1B[31m"
+# define GRN   "\x1B[32m"
+# define YEL   "\x1B[33m"
+# define BLU   "\x1B[34m"
+# define MAG   "\x1B[35m"
+# define CYN   "\x1B[36m"
+# define RESET "\x1B[0m"
+
 RobotomyRequestForm::RobotomyRequestForm():
 	AForm::AForm("Robotomy unnamed", 72, 45, "unspecified")
 {
@@ -48,8 +57,9 @@ bool RobotomyRequestForm::random()
 void RobotomyRequestForm::execute(const Bureaucrat& burr)
 {
 	std::cout << getName() << " was executed by " << burr.getName() << std::endl;
-	// bool result = random();
-	std::string msg1 = getTarget() + " has been robotomized successfully!";
+    std::cout <<std::endl<< YEL "expected output:\n50% chance Failure or success"RESET << std::endl;
+
+    std::string msg1 = getTarget() + " has been robotomized successfully!";
 	std::string msg2 = "Sorry, the robotomy failed!";
 	std::cout << getTarget();
     std::cout << (random() ? msg1 : msg2) << std::endl;
