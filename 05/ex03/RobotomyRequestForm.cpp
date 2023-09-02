@@ -1,16 +1,22 @@
 #include "RobotomyRequestForm.hpp"
 
+// Colour shit
+# define RED   "\x1B[31m"
+# define GRN   "\x1B[32m"
 # define YEL   "\x1B[33m"
+# define BLU   "\x1B[34m"
+# define MAG   "\x1B[35m"
+# define CYN   "\x1B[36m"
 # define RESET "\x1B[0m"
 
 RobotomyRequestForm::RobotomyRequestForm():
-	AForm::AForm("Robotomy unnamed", 72, 45, "unspecified")
+	AForm::AForm("Unnamed Robotomy", 72, 45, "unspecified")
 {
 	return ;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target):
-	AForm::AForm("Robotomy unnamed", 72, 45, target)
+	AForm::AForm("Unnamed Robotomy", 72, 45, target)
 {
 	return ;
 }
