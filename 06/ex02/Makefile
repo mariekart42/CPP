@@ -3,7 +3,7 @@ SRC = main.cpp Base.cpp A.cpp B.cpp C.cpp
 OBJ = $(SRC:.cpp=.o)
 RM = rm -rf
 CXX = c++
-#CXXFLAGS = -I. -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS = -I. -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
