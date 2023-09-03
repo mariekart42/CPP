@@ -26,12 +26,21 @@ Base* generate()
 void identify(Base &p)
 {
     std::cout << "Reference dynamic cast: ";
-    if (dynamic_cast<A*>(&p))
-        std::cout << GREEN"Type is A"RESET << std::endl;
-    else if (dynamic_cast<B*>(&p))
-        std::cout << GREEN"Type is B"RESET << std::endl;
-    else if (dynamic_cast<C*>(&p))
-        std::cout << GREEN"Type is C"RESET << std::endl;
+    try
+    {
+        if (dynamic_cast<A*>(&p))
+            std::cout << GREEN"Type is A"RESET << std::endl;
+        else if (dynamic_cast<B*>(&p))
+            std::cout << GREEN"Type is B"RESET << std::endl;
+        else if (dynamic_cast<C*>(&p))
+            std::cout << GREEN"Type is C"RESET << std::endl;
+        else
+            throw "Error: Reference Dynamic Cast not detectable";
+    }
+    catch(const std::exception& e)
+    {
+        return;
+    }
 }
 
 // dynamic Pointer
@@ -44,10 +53,15 @@ void identify(Base *p)
     std::cout << "Pointer dynamic cast: ";
     if (try_a)
         std::cout << YELLOW"Type is A"RESET << std::endl<<std::endl;
-    if (try_b)
+    else if (try_b)
         std::cout << YELLOW"Type is B"RESET << std::endl<<std::endl;
-    if (try_c)
+    else if (try_c)
         std::cout << YELLOW"Type is C"RESET << std::endl<<std::endl;
+    else
+    {
+        std::cerr << "dynamic_cast returned NULL!"<<std::endl;
+        exit(69);
+    }
 }
 
 int main() {
