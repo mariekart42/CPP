@@ -1,4 +1,4 @@
-NAME = aform
+NAME = convert
 SRC = main.cpp ScalarConverter.cpp
 OBJ = $(SRC:.cpp=.o)
 RM = rm -rf

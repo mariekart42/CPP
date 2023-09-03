@@ -140,22 +140,22 @@ void ScalarConverter::convertToAll(const T& value)
     }
     else
     {
-//        std::cout << std::fixed << std::setprecision(1);
+        std::cout << std::fixed << std::setprecision(1); // nachkommastellen
         if (value > std::numeric_limits<char>::max() || value < std::numeric_limits<char>::min())
             std::cout << "char: impossible" << std::endl;
         else if (!isprint(static_cast<char>(value)))
             std::cout << "char: Non displayable" << std::endl;
         else
             std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
-        if (value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min())
+        if (static_cast<int>(value) > std::numeric_limits<int>::max() || static_cast<int>(value) < std::numeric_limits<int>::min())
             std::cout << "int: impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(value) << std::endl;
-        if ((value > std::numeric_limits<float>::max() || value < std::numeric_limits<float>::min()) && value != 0)
+        if ((static_cast<float>(value) > std::numeric_limits<float>::max() || static_cast<float>(value) < std::numeric_limits<float>::min()) && static_cast<float>(value) != 0)
             std::cout << "float: impossible" << std::endl;
         else
             std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
-        if ((value > std::numeric_limits<double>::max() || value < std::numeric_limits<double>::min()) && value != 0)
+        if ((static_cast<double>(value) > std::numeric_limits<double>::max() || static_cast<double>(value) < std::numeric_limits<double>::min()) && static_cast<double>(value) != 0)
             std::cout << "double: impossible" << std::endl;
         else
             std::cout << "double: " << static_cast<double>(value) << std::endl;
