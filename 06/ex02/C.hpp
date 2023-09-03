@@ -1,8 +1,13 @@
-//
-// Created by Marie Mensing on 9/3/23.
-//
+#ifndef C_HPP
+#define C_HPP
 
-#ifndef INC_06_C_HPP
-#define INC_06_C_HPP
+#include "Base.hpp"
 
-#endif //INC_06_C_HPP
+class C: public Base
+{
+    public:
+        C();
+        ~C();
+};
+
+#endif

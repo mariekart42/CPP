@@ -1,5 +1,5 @@
 NAME = convert
-SRC = main.cpp Serializer.cpp
+SRC = main.cpp Base.cpp A.cpp B.cpp C.cpp
 OBJ = $(SRC:.cpp=.o)
 RM = rm -rf
 CXX = c++

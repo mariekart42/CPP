@@ -1,3 +1,10 @@
-//
-// Created by Marie Mensing on 9/3/23.
-//
+#include "B.hpp"
+
+B::B(): Base()
+{
+    std::cout << "Created B" << std::endl;
+}
+
+B::~B()
+{
+}

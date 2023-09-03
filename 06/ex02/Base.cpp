@@ -1,3 +1,10 @@
-//
-// Created by Marie Mensing on 9/3/23.
-//
+#include "Base.hpp"
+
+Base* Base::generate()
+{
+    return new A;
+}
+
+void Base::identify(Base &p) {}
+
+void Base::identify(Base *p) {}

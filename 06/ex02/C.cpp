@@ -1,3 +1,10 @@
-//
-// Created by Marie Mensing on 9/3/23.
-//
+#include "C.hpp"
+
+C::C(): Base()
+{
+    std::cout << "Created C" << std::endl;
+}
+
+C::~C()
+{
+}
