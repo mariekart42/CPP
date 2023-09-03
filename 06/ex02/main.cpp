@@ -2,20 +2,73 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <time.h>
+#include <unistd.h>
+
+Base* generate()
+{
+    srand((unsigned) time(NULL));
+    sleep(1);
+    switch (rand() % 3)
+    {
+        case 0:
+            return new A;
+        case 1:
+            return new B;
+        case 2:
+            return new C;
+        default:
+            return NULL;
+    }
+}
+
+// Reference
+void identify(Base &p)
+{
+    std::cout << "Reference dynamic cast: ";
+    if (dynamic_cast<A*>(&p))
+        std::cout << GREEN"Type is A"RESET << std::endl;
+    else if (dynamic_cast<B*>(&p))
+        std::cout << GREEN"Type is B"RESET << std::endl;
+    else if (dynamic_cast<C*>(&p))
+        std::cout << GREEN"Type is C"RESET << std::endl;
+}
+
+// dynamic Pointer
+void identify(Base *p)
+{
+    A*	try_a = dynamic_cast<A*>(p);
+    B*	try_b = dynamic_cast<B*>(p);
+    C*	try_c = dynamic_cast<C*>(p);
+
+    std::cout << "Pointer dynamic cast: ";
+    if (try_a)
+        std::cout << YELLOW"Type is A"RESET << std::endl<<std::endl;
+    if (try_b)
+        std::cout << YELLOW"Type is B"RESET << std::endl<<std::endl;
+    if (try_c)
+        std::cout << YELLOW"Type is C"RESET << std::endl<<std::endl;
+}
 
 int main() {
-    Base* obj = Base::generate();
-    Base::identify(obj);
-    Base* obj2 = Base::generate();
-    Base::identify(obj2);
-    Base* obj3 = Base::generate();
-    Base::identify(obj3);
+    Base* obj = generate();
+    identify(obj);
+    Base* obj2 = generate();
+    identify(obj2);
+
+    Base* obj3 = generate();
+    identify(obj3);
+
+std::cout<<std::endl;
     A objA = A();
-    Base::identify(objA);
+    identify(objA);
+
     B objB = B();
-    Base::identify(objB);
+    identify(objB);
+
     C objC = C();
-    Base::identify(objC);
+    identify(objC);
+
     delete obj;
     return (0);
 }

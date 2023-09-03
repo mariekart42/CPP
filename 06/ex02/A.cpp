@@ -1,8 +1,8 @@
 #include "A.hpp"
 
-A::A(): Base()
+A::A()
 {
-    std::cout << "Created A" << std::endl;
+    std::cout << GREEN"-- created A"RESET << std::endl;
 }
 
 A::~A()

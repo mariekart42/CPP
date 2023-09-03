@@ -2,8 +2,7 @@
 
 B::B(): Base()
 {
-    std::cout << "Created B" << std::endl;
-}
+    std::cout << GREEN"-- created B"RESET << std::endl;}
 
 B::~B()
 {
