@@ -2,6 +2,13 @@
 
 Serializer::Serializer() {}
 Serializer::~Serializer() {}
+Serializer::Serializer(const Serializer &){}
+Serializer& Serializer::operator=(const Serializer& src)
+{
+    return *this;
+}
+
+
 
 uintptr_t Serializer::serialize(Data* ptr)
 {
