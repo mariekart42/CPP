@@ -3,11 +3,11 @@ SRC = main.cpp ScalarConverter.cpp
 OBJ = $(SRC:.cpp=.o)
 RM = rm -rf
 CXX = c++
-CXXFLAGS = -I. -Wall -Wextra -Werror -std=c++98 -g
+CXXFLAGS = -I. -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-$(NAME): $(SRC)
+$(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(SRC)
 
 clean:

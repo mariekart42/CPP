@@ -20,6 +20,17 @@ ScalarConverter&  ScalarConverter::operator=(const ScalarConverter&)
 
 void ScalarConverter::convert(std::string literal)
 {
+//    if (isnan(value) || isinf(value))
+//    {
+//        std::cout << "char: impossible" << std::endl;
+//        std::cout << "int: impossible" << std::endl;
+//        std::cout << "float: " << value << "f" << std::endl;
+//        std::cout << "double: " << value << std::endl;
+//    }
+
+
+
+
     if (isInt(literal))
     {
         int i = ScalarConverter::convertInt(literal);
@@ -41,9 +52,7 @@ void ScalarConverter::convert(std::string literal)
         ScalarConverter::convertToAll(f);
     }
     else
-    {
         std::cout << "It's not a valid C++ literal" << std::endl;
-    }
 }
 
 bool ScalarConverter::isChar(std::string literal)
@@ -55,11 +64,24 @@ bool ScalarConverter::isChar(std::string literal)
 
 bool ScalarConverter::isInt(std::string literal)
 {
+//    std::cout << "at0f(litealr): "<< atof(literal.c_str()) << "\tINT_MIN: " << INT_MIN<< "\tINT_MAX: " << INT_MAX<<std::endl;
+//    if (atof(literal.c_str()) > INT_MAX || atof(literal.c_str()) < INT_MIN)
+//    {
+////        throw "Error: integer value not in bound";
+//        return (false);
+//    }
+//    else
+//        std::cout << "true"<<std::endl;
+//    return (true);
+//
+
     try
     {
-        size_t pos = 0;
-        std::stoi(literal, &pos);
-        if (pos == literal.length())
+//        size_t pos = 0;
+//        std::stoi(literal, &pos);
+//        std::cout << "pos: "<<pos<<std::endl;
+//        if (pos == literal.length())
+        std::count_if(literal.begin(), literal.end(),[](unsigned char c){ return std::isdigit(c);
             return (true);
         else
             return (false);
@@ -68,17 +90,15 @@ bool ScalarConverter::isInt(std::string literal)
     {
         return (false);
     }
+
 }
 
 bool ScalarConverter::isFloat(std::string literal)
 {
     try
     {
-        size_t pos = 0;
-        std::stof(literal, &pos);
-        if (pos == literal.length())
-            return (true);
-        else if (pos == literal.length() -1 && literal[pos] == 'f')
+        size_t pos = literal.length()-1;
+        if (literal[pos] == 'f')
             return (true);
         else
             return (false);
@@ -95,6 +115,9 @@ bool ScalarConverter::isDouble(std::string literal)
     {
         size_t pos = 0;
         std::stod(literal, &pos);
+        std::cout << "pos: "<<pos<<std::endl;
+        pos = literal.length();
+        std::cout << "pos: "<<pos<<std::endl;
         if (pos == literal.length())
             return (true);
         else
@@ -106,9 +129,12 @@ bool ScalarConverter::isDouble(std::string literal)
     }
 }
 
+
+
+
 int  ScalarConverter::convertInt(std::string literal)
 {
-    return (stoi(literal));
+    return (atoi(literal.c_str()));
 }
 
 char ScalarConverter::convertChar(std::string literal)
@@ -125,8 +151,9 @@ double ScalarConverter::convertDouble(std::string literal)
 
 float ScalarConverter::convertFloat(std::string literal)
 {
-    return (stof(literal));
+    return (atof(literal.c_str()));
 }
+
 
 template<typename T>
 void ScalarConverter::convertToAll(const T& value)
@@ -141,20 +168,24 @@ void ScalarConverter::convertToAll(const T& value)
     else
     {
         std::cout << std::fixed << std::setprecision(1); // nachkommastellen
+
         if (value > std::numeric_limits<char>::max() || value < std::numeric_limits<char>::min())
             std::cout << "char: impossible" << std::endl;
         else if (!isprint(static_cast<char>(value)))
             std::cout << "char: Non displayable" << std::endl;
         else
             std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+
         if (static_cast<int>(value) > std::numeric_limits<int>::max() || static_cast<int>(value) < std::numeric_limits<int>::min())
             std::cout << "int: impossible" << std::endl;
         else
             std::cout << "int: " << static_cast<int>(value) << std::endl;
+
         if ((static_cast<float>(value) > std::numeric_limits<float>::max() || static_cast<float>(value) < std::numeric_limits<float>::min()) && static_cast<float>(value) != 0)
             std::cout << "float: impossible" << std::endl;
         else
             std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
+
         if ((static_cast<double>(value) > std::numeric_limits<double>::max() || static_cast<double>(value) < std::numeric_limits<double>::min()) && static_cast<double>(value) != 0)
             std::cout << "double: impossible" << std::endl;
         else
