@@ -9,8 +9,7 @@
 #include <stdexcept>
 #include <ctime>        // std::time
 #include <cstdlib>      // std::rand, std::srand
-//#include <deque>
-//#include <list>
+
 
 # define GRN "\x1B[1;32m"
 # define YEL "\x1B[1;33m"
@@ -20,11 +19,10 @@
 
 
 
-//template<typename T>
 class Span
 {
     private:
-        unsigned int _N;//max size
+        unsigned int _N;
 		std::vector<int> _elements;
 		unsigned int _index;
 
@@ -38,7 +36,6 @@ class Span
 		long longestSpan();
 		void add_many_more();
 		void print();
-		std::vector<int> getSpan() const;
 		static int RandomNumber();
 };
 

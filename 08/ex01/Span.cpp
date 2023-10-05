@@ -31,8 +31,6 @@ Span::~Span() {}
 
 void Span::addNumber(long num)
 {
-//	if (_elements.size() > _N)
-//		throw std::out_of_range("you cant add more numbers");
 	if (num > INT_MAX || num < INT_MIN)
 		throw std::out_of_range("Not an Integer! pls smoller");
 	else if (_index < _N)
@@ -101,11 +99,3 @@ void Span::print()
 	std::cout << "--------------------------"<<std::endl<<std::endl;
 }
 
-
-
-
-
-std::vector<int> Span::getSpan() const
-{
-	return _elements;
-}
