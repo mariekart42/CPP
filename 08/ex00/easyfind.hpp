@@ -8,7 +8,6 @@
 # define RESET "\x1B[0;37m"
 
 
-
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -27,7 +26,7 @@ class NotFound : public std::exception
 template<typename T>
 typename T::iterator easyfind(T &lol, int val)
 {
-    typename T::iterator it = find(lol.begin(), lol.end(), val);
+    typename T::iterator it = find(lol.begin(), lol.end(), val); // find is part of the STL algos
     if (it == lol.end())
         throw NotFound();
     return it;

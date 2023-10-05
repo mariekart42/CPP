@@ -1,9 +1,9 @@
-NAME = convert
-SRC = main.cpp ScalarConverter.cpp
+NAME = span
+SRC = main.cpp Span.cpp
 OBJ = $(SRC:.cpp=.o)
 RM = rm -rf
 CXX = c++
-CXXFLAGS = -I. -Wall -Wextra -Werror -std=c++98 -pedantic
+CXXFLAGS = -I. -Wall -Wextra -Werror -std=c++98 -pedantic -g
 
 all: $(NAME)
 

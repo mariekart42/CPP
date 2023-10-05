@@ -1,10 +1,5 @@
 #include "ScalarConverter.hpp"
-# include <string>
-# include <iostream>
-# include <iomanip>
-# include <cstring>
-# include <limits>
-# include <cmath>
+
 ScalarConverter::ScalarConverter(){}
 ScalarConverter::ScalarConverter(const ScalarConverter &){}
 ScalarConverter::~ScalarConverter(){}
@@ -18,121 +13,75 @@ ScalarConverter&  ScalarConverter::operator=(const ScalarConverter&)
 
 
 
-void ScalarConverter::convert(std::string literal)
+void ScalarConverter::convert(const std::string& literal)
 {
-//    if (isnan(value) || isinf(value))
-//    {
-//        std::cout << "char: impossible" << std::endl;
-//        std::cout << "int: impossible" << std::endl;
-//        std::cout << "float: " << value << "f" << std::endl;
-//        std::cout << "double: " << value << std::endl;
-//    }
-
-
-
-
     if (isInt(literal))
     {
         int i = ScalarConverter::convertInt(literal);
         ScalarConverter::convertToAll(i);
-    }
-    else if (isChar(literal))
-    {
-        char c = ScalarConverter::convertChar(literal);
-        ScalarConverter::convertToAll(c);
-    }
-    else if (isDouble(literal))
-    {
-        double d = ScalarConverter::convertDouble(literal);
-        ScalarConverter::convertToAll(d);
     }
     else if (isFloat(literal))
     {
         float f = ScalarConverter::convertFloat(literal);
         ScalarConverter::convertToAll(f);
     }
+    else if (isDouble(literal))
+    {
+        double d = ScalarConverter::convertDouble(literal);
+        ScalarConverter::convertToAll(d);
+    }
+    else if (isChar(literal))
+    {
+        char c = ScalarConverter::convertChar(literal);
+        ScalarConverter::convertToAll(c);
+    }
     else
         std::cout << "It's not a valid C++ literal" << std::endl;
 }
 
-bool ScalarConverter::isChar(std::string literal)
+
+
+
+
+bool ScalarConverter::isChar(const std::string& str)
 {
-    if (literal.length() == 1 || (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\''))
-        return (true);
-    return (false);
+    return str.length() == 1;
 }
 
-bool ScalarConverter::isInt(std::string literal)
+bool ScalarConverter::isInt(const std::string& str)
 {
-//    std::cout << "at0f(litealr): "<< atof(literal.c_str()) << "\tINT_MIN: " << INT_MIN<< "\tINT_MAX: " << INT_MAX<<std::endl;
-//    if (atof(literal.c_str()) > INT_MAX || atof(literal.c_str()) < INT_MIN)
-//    {
-////        throw "Error: integer value not in bound";
-//        return (false);
-//    }
-//    else
-//        std::cout << "true"<<std::endl;
-//    return (true);
-//
-
-    try
-    {
-//        size_t pos = 0;
-//        std::stoi(literal, &pos);
-//        std::cout << "pos: "<<pos<<std::endl;
-//        if (pos == literal.length())
-        std::count_if(literal.begin(), literal.end(),[](unsigned char c){ return std::isdigit(c);
-            return (true);
-        else
-            return (false);
-    }
-    catch(const std::exception& e)
-    {
-        return (false);
-    }
-
+    std::istringstream iss(str);
+    int num;
+    iss >> num;
+    return !iss.fail() && iss.eof();
 }
 
-bool ScalarConverter::isFloat(std::string literal)
+bool ScalarConverter::isFloat(const std::string& str)
 {
-    try
-    {
-        size_t pos = literal.length()-1;
-        if (literal[pos] == 'f')
-            return (true);
-        else
-            return (false);
-    }
-    catch(const std::exception& e)
-    {
-        return (false);
-    }
+    // Remove the 'f' suffix if it exists
+    std::string input = str;
+    if (!input.empty() && input[input.length() - 1] == 'f')
+        input = input.substr(0, input.length() - 1);
+
+    std::istringstream iss(input);
+    float num;
+    iss >> num;
+    return !iss.fail() && iss.eof();
 }
 
-bool ScalarConverter::isDouble(std::string literal)
+bool ScalarConverter::isDouble(const std::string& str)
 {
-    try
-    {
-        size_t pos = 0;
-        std::stod(literal, &pos);
-        std::cout << "pos: "<<pos<<std::endl;
-        pos = literal.length();
-        std::cout << "pos: "<<pos<<std::endl;
-        if (pos == literal.length())
-            return (true);
-        else
-            return (false);
-    }
-    catch(const std::exception& e)
-    {
-        return (false);
-    }
+    std::istringstream iss(str);
+    double num;
+    iss >> num;
+    return !iss.fail() && iss.eof();
 }
 
 
 
 
-int  ScalarConverter::convertInt(std::string literal)
+
+int  ScalarConverter::convertInt(const std::string& literal)
 {
     return (atoi(literal.c_str()));
 }
@@ -144,15 +93,17 @@ char ScalarConverter::convertChar(std::string literal)
     return (literal[1]);
 }
 
-double ScalarConverter::convertDouble(std::string literal)
+double ScalarConverter::convertDouble(const std::string& literal)
 {
     return (stod(literal));
 }
 
-float ScalarConverter::convertFloat(std::string literal)
+float ScalarConverter::convertFloat(const std::string& literal)
 {
     return (atof(literal.c_str()));
 }
+
+
 
 
 template<typename T>
