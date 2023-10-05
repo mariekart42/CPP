@@ -26,6 +26,7 @@ class Span
     private:
         unsigned int _N;//max size
 		std::vector<int> _elements;
+		unsigned int _index;
 
     public:
         Span(int);

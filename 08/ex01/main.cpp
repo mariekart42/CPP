@@ -4,14 +4,15 @@
 //{
 //	try
 //	{
-//        Span sp = Span(5);
-//	    sp.addNumber(6);
-//	    sp.addNumber(3);
-//	    sp.addNumber(17);
-//	    sp.addNumber(9);
-//	    sp.addNumber(11);
-//	    std::cout << sp.shortestSpan() << std::endl;
-//	    std::cout << sp.longestSpan() << std::endl;
+//		Span sp = Span(5);
+//		sp.addNumber(6);
+//		sp.addNumber(3);
+//		sp.addNumber(17);
+//		sp.addNumber(9);
+//		sp.addNumber(11);
+//		std::cout << sp.shortestSpan() << std::endl;
+//		std::cout << sp.longestSpan() << std::endl;
+//		return 0;
 //
 //	}
 //	catch (std::exception &e)
@@ -21,7 +22,8 @@
 //    return 0;
 //}
 
-// test main:
+
+// MY TEXT MAIN
 int main()
 {
 	{
@@ -49,7 +51,7 @@ int main()
 	{
 		try // TOO FEW ARGUMENTS
 		{
-			std::cout << YEL"TEST 2 -- TOO FEW ARGUMENTS"RESET << std::endl;
+			std::cout << YEL"TEST 2 -- TOO FEW ARGUMENTS - FILL WITH 0"RESET << std::endl;
 			Span lol(4);
 
 			lol.print();
@@ -146,24 +148,4 @@ int main()
 			std::cout << RED << "ERROR: " << e.what() << RESET << std::endl;
 		}
 	}
-
-
-
-
-
-
-//		my_array.print();
-
-//		std::cout << "Longest Span  " <<GRN<< my_array.longestSpan()<<RESET<<std::endl;
-//		std::cout << "Shortest Span  " <<GRN<< my_array.shortestSpan()<<RESET<<std::endl;
-//
-//		Span big_boy(20);
-//
-//		big_boy.add_many_more(big_boy.getSpan().begin(), big_boy.getSpan().begin() + 20);
-//		big_boy.print();
-//		std::cout << "Longest Span  " <<GRN<< big_boy.longestSpan()<<RESET<<std::endl;
-//		std::cout << "Shortest Span  " <<GRN<< big_boy.shortestSpan()<<RESET<<std::endl;
-
-//		my_array.addNumber(-21474836);
-//		my_array.addNumber(INT_MAX);
 }

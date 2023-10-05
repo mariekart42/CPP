@@ -1,6 +1,6 @@
 #include "Span.hpp"
 
-Span::Span(int N)
+Span::Span(int N): _index(0)
 {
 	if (N < 0)
 		throw std::invalid_argument("Size cant be negative!");
@@ -8,24 +8,40 @@ Span::Span(int N)
 	_elements.resize(_N); // compiler makes the vector of this size and fills it with zeros.
 }
 
-Span::Span(Span const& other) :
-	_N()
+Span::Span(Span const& other)
 {
 	*this = other;
+}
+
+Span& Span::operator=(Span const& src)
+{
+	if (this == &src)
+		return (*this);
+	_N = src._N;
+	_index = src._index;
+	for (unsigned int i = 0; i <= src._N; i++)
+		_elements.at(i) = src._elements.at(i);
+	return(*this);
 }
 
 Span::~Span() {}
 
 
 
+
 void Span::addNumber(long num)
 {
-	if (_elements.size() >= _N)
-		throw std::out_of_range("you cant add more numbers");
-	else if (num > INT_MAX || num < INT_MIN)
+//	if (_elements.size() > _N)
+//		throw std::out_of_range("you cant add more numbers");
+	if (num > INT_MAX || num < INT_MIN)
 		throw std::out_of_range("Not an Integer! pls smoller");
+	else if (_index < _N)
+	{
+		_elements.at(_index) = num;
+		_index++;
+	}
 	else
-		_elements.push_back(static_cast<int>(num));
+		throw std::out_of_range("Exceeded Size of Vector");
 }
 
 long Span::shortestSpan()
@@ -68,6 +84,8 @@ void Span::add_many_more()
 {
 	if (_N < 0)
 		throw std::invalid_argument("number cant be smoler than 0");
+	if (_elements.size() > _N)
+		throw std::out_of_range("Vector is full sorry");
 	std::generate(_elements.begin(), _elements.end(), Span::RandomNumber);
 }
 
@@ -85,16 +103,7 @@ void Span::print()
 
 
 
-Span& Span::operator=(Span const& other)
-{
-	if (other._N != 0)
-	{
-		this->_elements.clear();
-		this->_N = other._N;
-		this->_elements = other._elements;
-	}
-	return *this;
-}
+
 
 std::vector<int> Span::getSpan() const
 {
