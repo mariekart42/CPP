@@ -1,7 +1,6 @@
 #ifndef BTC_HPP
 #define BTC_HPP
 
-
 # define GRN "\x1B[1;32m"
 # define RED "\033[0;31m"
 # define RESET "\x1B[0;37m"
@@ -20,6 +19,7 @@
 #define INVALID_DATE (std::cerr << RED"Error: Date must be between 2009-01-02 and 2023-03-29" << RESET << std::endl)
 #define PRINT_DATE (std::cout<<key.getYear()<<"-"<<key.getMonth()<<"-"<<key.getDay()<<" => "<<amount<<GRN" = ")
 #define PRINT_AMOUNT (std::cout<<it_db->second*amount<<RESET<<std::endl)
+
 enum Type
 {
 	Data_csv,
@@ -38,12 +38,10 @@ class btc
 		~btc();
 
 		void        findValue(Data&, float);
-		static bool        myStoF(const std::string&, float&);
 		void        doYourThing(const std::string&, Type, const std::string&);
-		static int  getSkip(Type);
 		static int  data_check(Data&);
 		static void initData(const std::string&, Data&);
-		static void complain(Type type, const std::string &line, const std::string &fileName);
+		static bool myStoF(const std::string&, float&);
 };
 
 #endif

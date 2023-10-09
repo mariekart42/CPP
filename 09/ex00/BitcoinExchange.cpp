@@ -1,6 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-
 btc::btc() {}
 btc::btc(const btc& src)
 {
@@ -17,9 +16,9 @@ btc  &btc::operator=(btc const &src)
 void btc::findValue(Data &key, float amount)
 {
 	if (amount < 0)
-		return std::cerr << RED"Error: Not a positive number." << RESET << std::endl, (void)0;
+		return std::cerr << RED"Error: Value too smol [>0]" << RESET << std::endl, (void)0;
 	else if (amount > 1000)
-		return std::cerr << RED"Error: Amount too big." << RESET << std::endl, (void)0;
+		return std::cerr << RED"Error: Value too big [0 - 1.000]" << RESET << std::endl, (void)0;
 	if (key.getYear() == -1)
 		return std::cerr << RED"Error: Bad input. Data out of range. " << key.flag << RESET << std::endl, (void)0;
 
@@ -40,13 +39,10 @@ int btc::data_check(Data &key)
 {
 	if (key.getYear() > 2022 || (key.getYear() >= 2022 && key.getMonth() > 3) || key.getYear() < 2009)
 		return INVALID_DATE, 0;
-	/*  calender validity check */
-	if ((key.getMonth() == 1 || key.getMonth() == 3 || key.getMonth() == 5 || key.getMonth() == 7 \
-        || key.getMonth() == 8 || key.getMonth() == 10 || key.getMonth() == 12) && key.getDay() > 31)
+	if ((key.getMonth() == 1 || key.getMonth() == 3 || key.getMonth() == 5 || key.getMonth() == 7 || key.getMonth() == 8 || key.getMonth() == 10 || key.getMonth() == 12) && key.getDay() > 31)
 		return DATE_NOPE, 0;
 	if ((key.getMonth() == 4 || key.getMonth() == 6 || key.getMonth() == 9 || key.getMonth() == 11) && key.getDay() > 30)
 		return DATE_NOPE, 0;
-	/*  leap year check     */
 	if (key.getYear() % 4 == 0 && key.getMonth() == 2 && key.getDay() > 29)
 		return DATE_NOPE, 0;
 	else if (key.getMonth() && key.getDay() > 28)
@@ -54,21 +50,6 @@ int btc::data_check(Data &key)
 	return 1;
 }
 
-
-int btc::getSkip(Type type)
-{
-	if (type == Data_csv)
-		return 1;
-	else
-		return 3;
-}
-
-void btc::complain(Type type, const std::string& line ,const std::string& fileName)
-{
-	if (type == Data_csv)
-		throw std::invalid_argument(INVALID_VALUE);
-	std::cerr << INVALID_VALUE << std::endl;
-}
 
 void btc::doYourThing(const std::string& fileName, Type type, const std::string& searchFor)
 {
@@ -79,24 +60,25 @@ void btc::doYourThing(const std::string& fileName, Type type, const std::string&
 	std::stringstream   str_buff;
 	str_buff << inputFile.rdbuf();
 
-	std::string         line;
-	Data                time;
 	int i = 0;
 	while (!str_buff.eof())
 	{
+		std::string line;
 		getline(str_buff, line);
 		if (type == Data_csv && !i++)
 			continue;
 		if (line.find(searchFor) == std::string::npos)
 			throw std::invalid_argument(INVALID_FORMAT);
+		Data time;
 		initData(line.substr(0, line.find(searchFor)), time);
 		float value;
-		if (!myStoF(line.substr(line.find(searchFor) + getSkip(type), line.size() - 1), value))
-			complain(type, line, fileName);
-		if (type == Input_txt)
-			findValue(time, value);
-		else if (type == Data_csv)
+		int skip = type == Data_csv ? 1 : 3;
+		if (!myStoF(line.substr(line.find(searchFor) + skip, line.size() - 1), value))
+			type == Data_csv ? throw std::invalid_argument(INVALID_VALUE) : std::cerr << INVALID_VALUE << std::endl;
+		if (type == Data_csv)
 			_data.insert(std::make_pair(time, value));
+		else
+			findValue(time, value);
 	}
 }
 
