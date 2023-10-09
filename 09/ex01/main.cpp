@@ -126,7 +126,7 @@ int main()
 		try // 0 1 /     -->  valid
 		{
 			std::cout << RESET << "------------------------" << std::endl;
-			std::string noPRN = "1 0 /";
+			std::string noPRN = "0 1 /";
 			std::cout << "-- INPUT:  " << YEL << noPRN << RESET << std::endl;
 			RPN obj1;
 			int result = obj1.doYourThing(noPRN);
@@ -154,4 +154,53 @@ int main()
 			std::cout << RESET << "------------------------" << std::endl << std::endl;
 		}
 	}
+	{
+		try // 7 7 * 7 -    -->   valid
+		{
+			std::cout << RESET << "------------------------" << std::endl;
+			std::string noPRN = "7 7 * 7 -";
+			std::cout << "-- INPUT:  " << YEL << noPRN << RESET << std::endl;
+			RPN obj1;
+			int result = obj1.doYourThing(noPRN);
+			std::cout << "-- " << GRN << "RESULT: " << result << std::endl;
+			std::cout << RESET << "------------------------" << std::endl << std::endl;
+		}
+		catch (std::exception &e) {
+			std::cerr << "-- " << RED << "ERROR: " << e.what() << RESET << std::endl;
+			std::cout << RESET << "------------------------" << std::endl << std::endl;
+		}
+	}
+	{
+		try // 1 2 * 2 / 2 * 2 4 - +    -->   valid
+		{
+			std::cout << RESET << "------------------------" << std::endl;
+			std::string noPRN = "1 2 * 2 / 2 * 2 4 - +";
+			std::cout << "-- INPUT:  " << YEL << noPRN << RESET << std::endl;
+			RPN obj1;
+			int result = obj1.doYourThing(noPRN);
+			std::cout << "-- " << GRN << "RESULT: " << result << std::endl;
+			std::cout << RESET << "------------------------" << std::endl << std::endl;
+		}
+		catch (std::exception &e) {
+			std::cerr << "-- " << RED << "ERROR: " << e.what() << RESET << std::endl;
+			std::cout << RESET << "------------------------" << std::endl << std::endl;
+		}
+	}
+	{
+		try // (1 + 1)    -->  not valid
+		{
+			std::cout << RESET << "------------------------" << std::endl;
+			std::string noPRN = "(1 + 1)";
+			std::cout << "-- INPUT:  " << YEL << noPRN << RESET << std::endl;
+			RPN obj1;
+			int result = obj1.doYourThing(noPRN);
+			std::cout << "-- " << GRN << "RESULT: " << result << std::endl;
+			std::cout << RESET << "------------------------" << std::endl << std::endl;
+		}
+		catch (std::exception &e) {
+			std::cerr << "-- " << RED << "ERROR: " << e.what() << RESET << std::endl;
+			std::cout << RESET << "------------------------" << std::endl << std::endl;
+		}
+	}
 }
+
