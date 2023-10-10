@@ -1,24 +1,27 @@
 #include "PmergeMe.hpp"
 
+
+template <typename T>
+T initContainer(int ac, char **av)
+{
+	T container;
+
+	for (int i = 1; i < ac; i++)
+		container.push_back(atoi(av[i]));
+	return container;
+}
+
+
+
 int main(int ac, char **av)
 {
-	clock_t         startTime;
-	clock_t         endTime;
-
 	{
 		std::cout << RESET << "\nSORT VECTOR:" << std::endl;
+
 		try // for vector
 		{
 			checkInput(ac, av);
-
-			startTime = clock();
-			std::vector<int> unsortedVec = initContainer<std::vector<int> >(ac, av);
-			printContainer(unsortedVec, before_sort);
-
-			std::vector<int> sortedVec = doYourSortingThing(unsortedVec);
-			printContainer(sortedVec, after_sort);
-			endTime = clock();
-			std::cout << "Time for Vector: " << PRINT_TIME << std::endl;
+			PmergeMe(initContainer<std::vector<int> >(ac, av));
 		}
 		catch (std::exception &e)
 		{
@@ -27,18 +30,11 @@ int main(int ac, char **av)
 	}
 	{
 		std::cout << "\nSORT DEQUE:" << std::endl;
+
 		try // for deque
 		{
 			checkInput(ac, av);
-
-			startTime = clock();
-			std::deque<int> unsortedVec = initContainer<std::deque<int> >(ac, av);
-			printContainer(unsortedVec, before_sort);
-
-			std::deque<int> sortedVec = doYourSortingThing(unsortedVec);
-			printContainer(sortedVec, after_sort);
-			endTime = clock();
-			std::cout << "Time for Deque: " << PRINT_TIME << std::endl << std::endl;
+			PmergeMe(initContainer<std::deque<int> >(ac, av));
 		}
 		catch (std::exception &e)
 		{

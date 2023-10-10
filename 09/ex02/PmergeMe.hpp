@@ -13,7 +13,7 @@
 #include <ctime>
 
 
-#define PRINT_TIME ((static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC) * 1e3)
+#define PRINT_TIME ((static_cast<double>(clock() - startTime) / CLOCKS_PER_SEC) * 1e3)
 
 
 enum lol
@@ -22,6 +22,8 @@ enum lol
 	after_sort
 };
 
+
+
 template<typename T>
 void pb_and_erase(T &three, T &lol)
 {
@@ -29,59 +31,71 @@ void pb_and_erase(T &three, T &lol)
 	lol.erase(lol.begin());
 }
 
-
 template<typename T>
 T merge(T one, T two)
 {
 	T three;
 
+	// always take the bigger number from both containers and push it to three (rm it from the chunk)
 	while (one.size() != 0 && two.size() != 0)
 		one.at(0) > two.at(0) ? pb_and_erase(three, two) : pb_and_erase(three, one);
+	// push and delete everything from one into three
 	while (one.size() != 0)
 		pb_and_erase(three, one);
+	// push and delete everything from two into three
 	while (two.size() != 0)
 		pb_and_erase(three, two);
+	// both chunks are merged into three, three is roughly sorted
 	return (three);
 }
 
 
+
+// merge operation combines two sorted sequences into a single sorted sequence
 template<typename T>
-T merge_sort(T oriVec)
+T merge_sort(T oriChunk)
 {
-	if (oriVec.size() == 1)
-		return (oriVec);
+	if (oriChunk.size() == 1)
+		return oriChunk;
 
-	int size = oriVec.size();
+	int size = oriChunk.size();
 
-	T   vec1(oriVec.begin(), oriVec.begin() + size / 2);
-	T   vec2(oriVec.begin() + size / 2, oriVec.end());
+	// dividing original Chunk into two chunks
+	T   vec1(oriChunk.begin(), oriChunk.begin() + size / 2);
+	T   vec2(oriChunk.begin() + size / 2, oriChunk.end());
 
+	// sorting both chunks separately
 	vec1 = merge_sort(vec1);
 	vec2 = merge_sort(vec2);
 
-	return (merge(vec1, vec2));
+	// merge two smol chunks together
+	return merge(vec1, vec2);
 }
 
+
+
+
+template<typename T>
+void swap(T &a, T &b)
+{
+	int tmp = a;
+	a = b;
+	b = tmp;
+}
+
+// sorting chunk from smollest to biggest
 template<typename T>
 T insertion_sort(T arr)
 {
-	int size = arr.size();
-	int i;
-	int j;
-
-	for (i = 1; i < size; i++)
-	{
-		j = i;
-		while (j > 0 && arr.at(j - 1) > arr.at(j))
-		{
-			int swap = arr.at(j - 1);
-			arr.at(j - 1) = arr.at(j);
-			arr.at(j) = swap;
-			j--;
-		}
+	for (unsigned int i = 1; i < arr.size(); i++)
+	{   // swap as long as (prev > current)
+		for (int x = i; (x > 0 && arr.at(x - 1) > arr.at(x)); x--)
+			swap(arr.at(x - 1), arr.at(x));
 	}
 	return arr;
 }
+
+
 
 template<typename T>
 T doYourSortingThing(T container)
@@ -103,16 +117,7 @@ T doYourSortingThing(T container)
 	return sorted;
 }
 
-template <typename T>
-T initContainer(int ac, char **av)
-{
-	T container;
 
-	for (int i = 1; i < ac; i++)
-		container.push_back(atoi(av[i]));
-
-	return container;
-}
 
 template<typename T>
 void printContainer(T &container, lol type)
@@ -121,6 +126,19 @@ void printContainer(T &container, lol type)
 	for (typename T::iterator it = container.begin(); it != container.end(); it++)
 		std::cout << *it << "  ";
 	std::cout << RESET << std::endl;
+}
+
+
+template <typename P>
+void PmergeMe(P unsortedVec)
+{
+	clock_t startTime = clock();
+
+	printContainer(unsortedVec, before_sort);
+	P sortedVec = doYourSortingThing(unsortedVec);
+	printContainer(sortedVec, after_sort);
+
+	std::cout << "Time for Vector: " << PRINT_TIME << std::endl;
 }
 
 
