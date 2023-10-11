@@ -26,9 +26,10 @@ void btc::findValue(Data &key, float amount)
 
 	while (it_db->first <= key && it_db != _data.end())
 		it_db++;
-	it_db--;
 	if (data_check(key))
 	{
+		if (it_db != _data.begin())
+			it_db--;
 		PRINT_DATE;
 		PRINT_AMOUNT;
 	}
@@ -37,15 +38,17 @@ void btc::findValue(Data &key, float amount)
 
 int btc::data_check(Data &key)
 {
-	if (key.getYear() > 2022 || (key.getYear() >= 2022 && key.getMonth() > 3) || key.getYear() < 2009)
+	if (key.getYear() < 2009 || key.getYear() > 2022)
 		return INVALID_DATE, 0;
-	if ((key.getMonth() == 1 || key.getMonth() == 3 || key.getMonth() == 5 || key.getMonth() == 7 || key.getMonth() == 8 || key.getMonth() == 10 || key.getMonth() == 12) && key.getDay() > 31)
-		return DATE_NOPE, 0;
-	if ((key.getMonth() == 4 || key.getMonth() == 6 || key.getMonth() == 9 || key.getMonth() == 11) && key.getDay() > 30)
-		return DATE_NOPE, 0;
-	if (key.getYear() % 4 == 0 && key.getMonth() == 2 && key.getDay() > 29)
-		return DATE_NOPE, 0;
-	else if (key.getMonth() && key.getDay() > 28)
+	if (key.getYear() == 2009 && (key.getMonth() == 1 && key.getDay() < 2))
+		return INVALID_DATE, 0;
+	if (key.getYear() == 2022 && (key.getMonth() > 3 || (key.getMonth() == 3 && key.getDay() > 29)))
+		return INVALID_DATE, 0;
+	if (key.getDay() < 1 ||
+	    ((key.getMonth() == 1 || key.getMonth() == 3 || key.getMonth() == 5 || key.getMonth() == 7 || key.getMonth() == 8 || key.getMonth() == 10 || key.getMonth() == 12) && key.getDay() > 31) ||
+	    ((key.getMonth() == 4 || key.getMonth() == 6 || key.getMonth() == 9 || key.getMonth() == 11) && key.getDay() > 30) ||
+	    (key.getYear() % 4 == 0 && key.getMonth() == 2 && key.getDay() > 29) ||
+	    (key.getMonth() == 2 && key.getDay() > 28))
 		return DATE_NOPE, 0;
 	return 1;
 }
@@ -57,6 +60,8 @@ void btc::doYourThing(const std::string& fileName, Type type, const std::string&
 	if (!inputFile.is_open())
 		throw std::runtime_error("Could not open input File " + fileName);
 
+	if (inputFile.peek() == std::ifstream::traits_type::eof())
+		return std::cout<<"File ["<<fileName<<"] is empty"<<std::endl, (void)0;
 	std::stringstream   str_buff;
 	str_buff << inputFile.rdbuf();
 
@@ -67,14 +72,15 @@ void btc::doYourThing(const std::string& fileName, Type type, const std::string&
 		getline(str_buff, line);
 		if (type == Data_csv && !i++)
 			continue;
-		if (line.find(searchFor) == std::string::npos)
-			throw std::invalid_argument(INVALID_FORMAT);
 		Data time;
 		initData(line.substr(0, line.find(searchFor)), time);
 		float value;
 		int skip = type == Data_csv ? 1 : 3;
 		if (!myStoF(line.substr(line.find(searchFor) + skip, line.size() - 1), value))
-			type == Data_csv ? throw std::invalid_argument(INVALID_VALUE) : std::cerr << INVALID_VALUE << std::endl;
+		{
+			type == Data_csv ? throw std::invalid_argument(INVALID_VALUE) : std::cerr <<RED<< INVALID_VALUE <<RESET<< std::endl;
+			continue;
+		}
 		if (type == Data_csv)
 			_data.insert(std::make_pair(time, value));
 		else

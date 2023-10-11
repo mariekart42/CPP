@@ -16,7 +16,7 @@
 #define INVALID_FORMAT "Date format must contain ',' in each line for database and '|' in each line for input file and the separator between date and value"
 #define INVALID_VALUE ("Invalid Value [" + fileName + "]: \"" + line + "\"!")
 #define DATE_NOPE (std::cerr << RED"Error: Date does not exist." << RESET << std::endl)
-#define INVALID_DATE (std::cerr << RED"Error: Date must be between 2009-01-02 and 2023-03-29" << RESET << std::endl)
+#define INVALID_DATE (std::cerr << RED"Error: Date must be between 2009-01-02 and 2022-03-29" << RESET << std::endl)
 #define PRINT_DATE (std::cout<<key.getYear()<<"-"<<key.getMonth()<<"-"<<key.getDay()<<" => "<<amount<<GRN" = ")
 #define PRINT_AMOUNT (std::cout<<it_db->second*amount<<RESET<<std::endl)
 
@@ -42,6 +42,7 @@ class btc
 		static int  data_check(Data&);
 		static void initData(const std::string&, Data&);
 		static bool myStoF(const std::string&, float&);
+		static void doTests(btc obj);
 };
 
 #endif
